@@ -134,11 +134,11 @@ void Summary_ColorizeStatScreen(struct SummaryState *summary, u32 mode)
             // Summary_PrintStatStringAccountForStat(summary, 0xF+i, msgId+i, i-1, JUSTIFY_LEFT);
             Summary_PrintStringGeneric(summary, 0xF + i, msgId + i, color, JUSTIFY_LEFT);
         } else if (mode == 0) { // raw stat
-            Summary_PrintStringGeneric(summary, 0xF, 110, WHITE, JUSTIFY_LEFT);
+            Summary_PrintStringGeneric(summary, 0xF, 110, WHITE, JUSTIFY_CENTER);
         } else if (mode == 1) { // ev's
-            Summary_PrintStringGeneric(summary, 0xF, 206, WHITE, JUSTIFY_LEFT);
+            Summary_PrintStringGeneric(summary, 0xF, 206, WHITE, JUSTIFY_CENTER);
         } else { // iv's
-            Summary_PrintStringGeneric(summary, 0xF, 207, WHITE, JUSTIFY_LEFT);
+            Summary_PrintStringGeneric(summary, 0xF, 207, WHITE, JUSTIFY_CENTER);
         }
         CopyWindowToVram(&summary->defnWindows[0xF + i]);
     }
