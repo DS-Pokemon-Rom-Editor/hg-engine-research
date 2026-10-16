@@ -204,5 +204,5 @@ Defense↓
 Sp. Atk↓
 Sp. Def↓
 Speed↓
-Shuckle
-Gigas
+Effort
+Base Points

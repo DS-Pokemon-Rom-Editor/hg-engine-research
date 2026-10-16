@@ -133,15 +133,23 @@ void Summary_ColorizeStatScreen(struct SummaryState *summary, u32 mode)
 
             // Summary_PrintStatStringAccountForStat(summary, 0xF+i, msgId+i, i-1, JUSTIFY_LEFT);
             Summary_PrintStringGeneric(summary, 0xF + i, msgId + i, color, JUSTIFY_LEFT);
-        } else if (mode == 0) { // raw stat
-            Summary_PrintStringGeneric(summary, 0xF, 110, WHITE, JUSTIFY_CENTER);
-        } else if (mode == 1) { // ev's
-            Summary_PrintStringGeneric(summary, 0xF, 206, WHITE, JUSTIFY_CENTER);
-        } else { // iv's
-            Summary_PrintStringGeneric(summary, 0xF, 207, WHITE, JUSTIFY_CENTER);
+        } else { // hp
+            Summary_PrintStringGeneric(summary, 0xF, 110, WHITE, JUSTIFY_LEFT);
         }
         CopyWindowToVram(&summary->defnWindows[0xF + i]);
     }
+
+    // swap the skilsl thing to EV or IV depending on the mode
+    u32 titleMsgId = 109; // SKILLS
+    if (mode == 1) {
+        titleMsgId = 206; // EV mode
+    } else if (mode == 2) {
+        titleMsgId = 207; // IV mode
+    }
+    // skills is on window 2 clear it via fill then print and to vram
+    FillWindowPixelBuffer(&summary->defnWindows[2], 0);
+    Summary_PrintStringGeneric(summary, 2, titleMsgId, WHITE, JUSTIFY_LEFT);
+    CopyWindowToVram(&summary->defnWindows[2]);
 }
 
 void Summary_ColorizeStatScreen_Wrap(struct SummaryState *summary)
